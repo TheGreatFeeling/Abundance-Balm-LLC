@@ -98,3 +98,74 @@ const currentYearElements = document.querySelectorAll("[data-current-year]");
 currentYearElements.forEach((element) => {
   element.textContent = new Date().getFullYear();
 });
+.reveal {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ingredient-card:nth-child(2),
+.review-card:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.ingredient-card:nth-child(3),
+.review-card:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.ingredient-card:nth-child(4) {
+  transition-delay: 0.05s;
+}
+
+.ingredient-card:nth-child(5) {
+  transition-delay: 0.15s;
+}
+
+.ingredient-card:nth-child(6) {
+  transition-delay: 0.25s;
+}
+
+.balm-tin {
+  transition: transform 0.22s ease-out;
+  transform-style: preserve-3d;
+}
+
+.site-header.scrolled {
+  backdrop-filter: blur(18px);
+  background: rgba(12, 36, 24, 0.88);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: none;
+  padding-left: max(24px, calc((100vw - var(--max-width)) / 2 + 24px));
+  padding-right: max(24px, calc((100vw - var(--max-width)) / 2 + 24px));
+  position: fixed;
+  transition:
+    background 0.3s ease,
+    backdrop-filter 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
