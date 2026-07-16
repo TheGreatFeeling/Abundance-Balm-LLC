@@ -1,171 +1,111 @@
-const menuButton = document.querySelector(".menu-button");
-const navigation = document.querySelector(".main-navigation");
-const navigationLinks = document.querySelectorAll(".main-navigation a");
+document.addEventListener("DOMContentLoaded", () => {
 
-if (menuButton && navigation) {
-  menuButton.addEventListener("click", () => {
-    const isOpen = navigation.classList.toggle("open");
+    // --------------------------
+    // Current Year
+    // --------------------------
 
-    menuButton.classList.toggle("open", isOpen);
-    menuButton.setAttribute("aria-expanded", String(isOpen));
+    const year = document.getElementById("currentYear");
 
-    document.body.style.overflow = isOpen ? "hidden" : "";
-  });
+    if (year) {
+        year.textContent = new Date().getFullYear();
+    }
 
-  navigationLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      navigation.classList.remove("open");
-      menuButton.classList.remove("open");
-      menuButton.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
-    });
-  });
-}
+    // --------------------------
+    // Mobile Menu
+    // --------------------------
 
-const revealElements = document.querySelectorAll(
-  [
-    ".section-heading",
-    ".section-grid",
-    ".ingredient-card",
-    ".ritual-step",
-    ".product-panel",
-    ".review-card",
-    ".safety-grid",
-    ".closing-section",
-  ].join(",")
-);
+    const menuButton = document.getElementById("menuButton");
+    const navigation = document.getElementById("navigationLinks");
 
-revealElements.forEach((element) => {
-  element.classList.add("reveal");
+    if (menuButton && navigation) {
+
+        menuButton.addEventListener("click", () => {
+
+            navigation.classList.toggle("open");
+
+            document.body.classList.toggle("menu-open");
+
+        });
+
+    }
+
+    // --------------------------
+    // Floating Dust
+    // --------------------------
+
+    const particleField = document.getElementById("particleField");
+
+    if (particleField) {
+
+        for (let i = 0; i < 80; i++) {
+
+            const particle = document.createElement("span");
+
+            particle.className = "particle";
+
+            particle.style.left = Math.random() * 100 + "%";
+
+            particle.style.animationDuration =
+                10 + Math.random() * 18 + "s";
+
+            particle.style.animationDelay =
+                Math.random() * 12 + "s";
+
+            particle.style.opacity =
+                Math.random();
+
+            particle.style.transform =
+                "scale(" + (0.3 + Math.random()) + ")";
+
+            particleField.appendChild(particle);
+
+        }
+
+    }
+
+    // --------------------------
+    // Rotating Balm Tin
+    // --------------------------
+
+    const balmStage = document.getElementById("balmStage");
+
+    if (balmStage) {
+
+        document.addEventListener("mousemove", (event) => {
+
+            const x =
+                (event.clientX / window.innerWidth - 0.5) * 20;
+
+            const y =
+                (event.clientY / window.innerHeight - 0.5) * -20;
+
+            balmStage.style.transform =
+                `rotateX(${y}deg) rotateY(${x}deg)`;
+
+        });
+
+    }
+
+    // --------------------------
+    // Newsletter Demo
+    // --------------------------
+
+    const form = document.getElementById("newsletterForm");
+    const message = document.getElementById("formMessage");
+
+    if (form && message) {
+
+        form.addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            message.textContent =
+                "Thank you for joining the Abundance community.";
+
+            form.reset();
+
+        });
+
+    }
+
 });
-
-const revealObserver = new IntersectionObserver(
-  (entries, observer) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) {
-        return;
-      }
-
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
-    });
-  },
-  {
-    threshold: 0.12,
-    rootMargin: "0px 0px -40px 0px",
-  }
-);
-
-revealElements.forEach((element) => {
-  revealObserver.observe(element);
-});
-
-const heroProduct = document.querySelector(".hero-product");
-const balmTin = document.querySelector(".balm-tin");
-
-if (heroProduct && balmTin && window.matchMedia("(pointer: fine)").matches) {
-  heroProduct.addEventListener("mousemove", (event) => {
-    const bounds = heroProduct.getBoundingClientRect();
-
-    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-
-    balmTin.style.transform = `
-      rotate(-3deg)
-      rotateY(${x * 9}deg)
-      rotateX(${y * -9}deg)
-      translateY(-4px)
-    `;
-  });
-
-  heroProduct.addEventListener("mouseleave", () => {
-    balmTin.style.transform = "rotate(-3deg)";
-  });
-}
-
-const header = document.querySelector(".site-header");
-
-window.addEventListener("scroll", () => {
-  if (!header) {
-    return;
-  }
-
-  header.classList.toggle("scrolled", window.scrollY > 40);
-});
-
-const currentYearElements = document.querySelectorAll("[data-current-year]");
-
-currentYearElements.forEach((element) => {
-  element.textContent = new Date().getFullYear();
-});
-.reveal {
-  opacity: 0;
-  transform: translateY(34px);
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.ingredient-card:nth-child(2),
-.review-card:nth-child(2) {
-  transition-delay: 0.1s;
-}
-
-.ingredient-card:nth-child(3),
-.review-card:nth-child(3) {
-  transition-delay: 0.2s;
-}
-
-.ingredient-card:nth-child(4) {
-  transition-delay: 0.05s;
-}
-
-.ingredient-card:nth-child(5) {
-  transition-delay: 0.15s;
-}
-
-.ingredient-card:nth-child(6) {
-  transition-delay: 0.25s;
-}
-
-.balm-tin {
-  transition: transform 0.22s ease-out;
-  transform-style: preserve-3d;
-}
-
-.site-header.scrolled {
-  backdrop-filter: blur(18px);
-  background: rgba(12, 36, 24, 0.88);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  max-width: none;
-  padding-left: max(24px, calc((100vw - var(--max-width)) / 2 + 24px));
-  padding-right: max(24px, calc((100vw - var(--max-width)) / 2 + 24px));
-  position: fixed;
-  transition:
-    background 0.3s ease,
-    backdrop-filter 0.3s ease;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
-}
