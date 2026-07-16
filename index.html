@@ -1,527 +1,512 @@
-import Link from "next/link";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
 
-const ingredients = [
-  {
-    name: "Coconut Oil",
-    description: "A rich, skin-conditioning base that melts smoothly on contact.",
-    symbol: "◒",
-  },
-  {
-    name: "Sweet Almond Oil",
-    description: "Lightweight nourishment that helps the balm spread evenly.",
-    symbol: "◇",
-  },
-  {
-    name: "Jojoba Oil",
-    description: "A silky botanical oil known for its skin-friendly texture.",
-    symbol: "○",
-  },
-  {
-    name: "Orange Oil",
-    description: "A bright citrus aroma that gives the blend its uplifting character.",
-    symbol: "✦",
-  },
-  {
-    name: "Pine & Mint",
-    description: "A crisp, cooling combination with a clean woodland finish.",
-    symbol: "△",
-  },
-  {
-    name: "Cinnamon Oil",
-    description: "A warm aromatic note that completes the signature blend.",
-    symbol: "✣",
-  },
-];
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-const benefits = [
-  "Small-batch craftsmanship",
-  "Plant-based oil blend",
-  "Smooth, fast-melting texture",
-  "Portable everyday tin",
-];
+  <meta
+    name="description"
+    content="Abundance Balm is a handcrafted botanical body balm made with nourishing oils and aromatic plant ingredients."
+  >
 
-export default function Home() {
-  return (
-    <main className="min-h-screen overflow-hidden bg-[#f6f1e7] text-[#16231b]">
-      {/* Navigation */}
-      <header className="absolute inset-x-0 top-0 z-50">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-10">
-          <Link href="/" className="group flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-white/10 text-lg text-white backdrop-blur-md transition group-hover:bg-white/20">
-              A
-            </div>
+  <meta
+    name="theme-color"
+    content="#07110c"
+  >
 
-            <div className="text-white">
-              <p className="text-sm font-semibold uppercase tracking-[0.26em]">
-                Abundance
-              </p>
-              <p className="text-[10px] uppercase tracking-[0.38em] text-white/65">
-                Botanical Balm
-              </p>
-            </div>
-          </Link>
+  <title>Abundance Balm | Botanical Body Care</title>
 
-          <nav className="hidden items-center gap-8 text-sm font-medium text-white/80 md:flex">
-            <a href="#story" className="transition hover:text-white">
-              Our Story
-            </a>
-            <a href="#ingredients" className="transition hover:text-white">
-              Ingredients
-            </a>
-            <a href="#ritual" className="transition hover:text-white">
-              How to Use
-            </a>
-            <a href="#safety" className="transition hover:text-white">
-              Safety
-            </a>
-          </nav>
+  <link rel="stylesheet" href="style.css">
 
-          <Link
-            href="#shop"
-            className="rounded-full border border-white/25 bg-white px-5 py-3 text-xs font-bold uppercase tracking-[0.2em] text-[#183e2a] shadow-xl transition hover:-translate-y-0.5 hover:bg-[#f3df9d]"
-          >
-            Shop Balm
-          </Link>
-        </div>
-      </header>
+  <script src="script.js" defer></script>
+</head>
 
-      {/* Hero */}
-      <section className="relative min-h-[950px] bg-[#173d2a]">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -left-48 top-28 h-[520px] w-[520px] rounded-full bg-[#d6a43d]/20 blur-3xl" />
-          <div className="absolute -right-32 bottom-0 h-[620px] w-[620px] rounded-full bg-[#7aa273]/20 blur-3xl" />
-          <div className="absolute left-[42%] top-[15%] h-[360px] w-[360px] rounded-full border border-white/5" />
-          <div className="absolute left-[37%] top-[10%] h-[480px] w-[480px] rounded-full border border-white/5" />
-          <div className="absolute left-[32%] top-[5%] h-[600px] w-[600px] rounded-full border border-white/[0.035]" />
-        </div>
+<body>
 
-        <div className="relative mx-auto grid min-h-[950px] max-w-7xl items-center gap-14 px-6 pb-20 pt-40 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:pt-28">
-          <div className="max-w-3xl">
-            <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[0.07] px-4 py-2 text-xs font-semibold uppercase tracking-[0.26em] text-[#f2d890] backdrop-blur-md">
-              <span className="h-2 w-2 rounded-full bg-[#f2d890]" />
-              Crafted with intention
-            </div>
+  <!-- Accessibility shortcut -->
+  <a class="skip-link" href="#main-content">
+    Skip to content
+  </a>
 
-            <h1 className="max-w-4xl font-serif text-6xl leading-[0.93] tracking-[-0.05em] text-white sm:text-7xl lg:text-[96px]">
-              Nourishment
-              <span className="block italic text-[#f1cf76]">in every touch.</span>
-            </h1>
+  <!-- Decorative background layers -->
+  <div class="site-background" aria-hidden="true">
+    <div class="forest-background"></div>
+    <div class="sunrise-glow"></div>
+    <div class="background-shadow"></div>
+    <div class="background-grain"></div>
+  </div>
 
-            <p className="mt-8 max-w-xl text-lg leading-8 text-white/70 sm:text-xl">
-              A rich botanical balm made with coconut, jojoba, almond and
-              aromatic plant oils. Designed to turn ordinary skin care into a
-              grounding daily ritual.
-            </p>
+  <!-- Floating particles -->
+  <div class="particle-field" id="particleField" aria-hidden="true"></div>
 
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Link
-                href="#shop"
-                className="inline-flex items-center justify-center rounded-full bg-[#f3d884] px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-[#173d2a] shadow-2xl shadow-black/20 transition hover:-translate-y-1 hover:bg-white"
-              >
-                Discover the balm
-              </Link>
+  <!-- Drifting leaves -->
+  <div class="leaf-field" id="leafField" aria-hidden="true">
+    <span class="leaf leaf-one">🍃</span>
+    <span class="leaf leaf-two">🍂</span>
+    <span class="leaf leaf-three">🍃</span>
+    <span class="leaf leaf-four">🍂</span>
+    <span class="leaf leaf-five">🍃</span>
+  </div>
 
-              <Link
-                href="#story"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/[0.04] px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-white backdrop-blur-md transition hover:bg-white/10"
-              >
-                Read our story
-              </Link>
-            </div>
+  <!-- Navigation -->
+  <header class="site-header" id="siteHeader">
+    <nav class="glass-navigation" aria-label="Main navigation">
 
-            <div className="mt-14 grid max-w-xl grid-cols-2 gap-x-8 gap-y-5 border-t border-white/15 pt-8 sm:grid-cols-4">
-              {benefits.map((benefit) => (
-                <div key={benefit}>
-                  <div className="mb-2 h-1 w-8 rounded-full bg-[#e4c56d]" />
-                  <p className="text-xs leading-5 text-white/60">{benefit}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+      <a class="brand-logo" href="index.html" aria-label="Abundance Balm home">
+        <span class="brand-mark" aria-hidden="true">A</span>
 
-          {/* Product display */}
-          <div className="relative flex min-h-[580px] items-center justify-center">
-            <div className="absolute h-[480px] w-[480px] rounded-full bg-[#d9b153]/15 blur-3xl" />
+        <span class="brand-name">
+          <strong>Abundance</strong>
+          <small>Botanical Balm</small>
+        </span>
+      </a>
 
-            <div className="absolute right-3 top-20 hidden rotate-6 rounded-3xl border border-white/15 bg-white/[0.06] p-5 text-white/75 shadow-2xl backdrop-blur-xl sm:block">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-[#e8ce86]">
-                Signature aroma
-              </p>
-              <p className="mt-2 font-serif text-2xl">Citrus · Pine · Mint</p>
-            </div>
-
-            <div className="absolute bottom-20 left-0 hidden -rotate-3 rounded-3xl border border-white/15 bg-white/[0.06] p-5 text-white/75 shadow-2xl backdrop-blur-xl sm:block">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-[#e8ce86]">
-                Crafted
-              </p>
-              <p className="mt-2 font-serif text-2xl">In small batches</p>
-            </div>
-
-            <div className="relative">
-              <div className="absolute left-1/2 top-[88%] h-24 w-80 -translate-x-1/2 rounded-[100%] bg-black/35 blur-2xl" />
-
-              <div className="relative flex h-[410px] w-[410px] items-center justify-center rounded-full border-[12px] border-[#bc8e35] bg-gradient-to-br from-[#f5de8a] via-[#c69b44] to-[#7e5720] p-5 shadow-[0_50px_100px_rgba(0,0,0,0.45)] sm:h-[470px] sm:w-[470px]">
-                <div className="absolute inset-4 rounded-full border border-white/35" />
-                <div className="absolute inset-8 rounded-full border border-[#6f4a19]/25" />
-
-                <div className="relative flex h-full w-full flex-col items-center justify-center rounded-full bg-[#f4e7c1] text-center shadow-inner">
-                  <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.9),transparent_35%)]" />
-
-                  <div className="relative px-10">
-                    <p className="text-xs font-semibold uppercase tracking-[0.46em] text-[#795a28]">
-                      Fine Skin Moisturizer
-                    </p>
-
-                    <div className="mx-auto my-7 flex h-20 w-20 items-center justify-center rounded-full border border-[#a27d39]">
-                      <span className="font-serif text-4xl text-[#173d2a]">A</span>
-                    </div>
-
-                    <h2 className="font-serif text-5xl leading-none tracking-[-0.04em] text-[#173d2a] sm:text-6xl">
-                      Abundance
-                    </h2>
-
-                    <p className="mt-3 text-sm font-semibold uppercase tracking-[0.5em] text-[#8a6a31]">
-                      Balm
-                    </p>
-
-                    <div className="mx-auto mt-8 h-px w-28 bg-[#a48449]" />
-
-                    <p className="mt-6 text-xs uppercase leading-6 tracking-[0.22em] text-[#715b39]">
-                      Coconut · Orange · Pine
-                      <br />
-                      Mint · Almond · Jojoba
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute -bottom-8 left-1/2 flex h-20 w-20 -translate-x-1/2 items-center justify-center rounded-full border border-white/25 bg-[#173d2a] text-center text-[9px] font-bold uppercase tracking-[0.16em] text-[#f1d486] shadow-xl">
-                Small
-                <br />
-                Batch
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Brand statement */}
-      <section id="story" className="relative px-6 py-28 lg:px-10 lg:py-40">
-        <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.34em] text-[#9a742e]">
-              The Abundance philosophy
-            </p>
-          </div>
-
-          <div>
-            <h2 className="font-serif text-4xl leading-tight tracking-[-0.04em] text-[#173d2a] sm:text-5xl lg:text-6xl">
-              Skin care should feel less like a routine and more like a moment
-              of restoration.
-            </h2>
-
-            <div className="mt-10 grid gap-8 text-base leading-8 text-[#536057] md:grid-cols-2">
-              <p>
-                Abundance Balm began with a simple belief: some of the most
-                meaningful products are made from familiar ingredients,
-                carefully blended and thoughtfully presented.
-              </p>
-
-              <p>
-                Every tin is created to deliver a rich texture, a memorable
-                botanical aroma and a small pause from the noise of everyday
-                life.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Ingredients */}
-      <section id="ingredients" className="bg-[#ede5d6] px-6 py-28 lg:px-10 lg:py-36">
-        <div className="mx-auto max-w-7xl">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.34em] text-[#9a742e]">
-              Inside every tin
-            </p>
-
-            <h2 className="mt-5 font-serif text-5xl tracking-[-0.04em] text-[#173d2a] sm:text-6xl">
-              Familiar ingredients.
-              <span className="block italic text-[#94702b]">
-                An unforgettable blend.
-              </span>
-            </h2>
-
-            <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-[#5f685f]">
-              A concentrated blend of plant-based oils selected for texture,
-              aroma and a smooth application experience.
-            </p>
-          </div>
-
-          <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {ingredients.map((ingredient, index) => (
-              <article
-                key={ingredient.name}
-                className="group rounded-[32px] border border-[#173d2a]/10 bg-[#f7f1e6] p-8 transition duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#173d2a]/10"
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#173d2a] text-xl text-[#efd485]">
-                    {ingredient.symbol}
-                  </div>
-
-                  <span className="font-serif text-2xl text-[#173d2a]/20">
-                    0{index + 1}
-                  </span>
-                </div>
-
-                <h3 className="mt-10 font-serif text-3xl text-[#173d2a]">
-                  {ingredient.name}
-                </h3>
-
-                <p className="mt-4 leading-7 text-[#657067]">
-                  {ingredient.description}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Ritual */}
-      <section
-        id="ritual"
-        className="relative overflow-hidden bg-[#173d2a] px-6 py-28 text-white lg:px-10 lg:py-36"
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-expanded="false"
+        aria-controls="navigationLinks"
+        aria-label="Open navigation menu"
       >
-        <div className="absolute -right-40 top-0 h-[600px] w-[600px] rounded-full bg-[#b88d36]/15 blur-3xl" />
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-        <div className="relative mx-auto grid max-w-7xl gap-16 lg:grid-cols-2 lg:items-center">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.34em] text-[#f0d080]">
-              The daily ritual
-            </p>
+      <div class="navigation-links" id="navigationLinks">
+        <a class="active" href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="ingredients.html">Ingredients</a>
+        <a href="story.html">Our Story</a>
+        <a href="safety.html">Safety</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="wholesale.html">Wholesale</a>
+      </div>
 
-            <h2 className="mt-5 max-w-xl font-serif text-5xl tracking-[-0.04em] sm:text-6xl">
-              Warm. Apply.
-              <span className="block italic text-[#f0d080]">Breathe deeply.</span>
-            </h2>
+      <a class="navigation-shop-button" href="shop.html">
+        Shop Balm
+        <span aria-hidden="true">→</span>
+      </a>
 
-            <p className="mt-7 max-w-xl text-lg leading-8 text-white/65">
-              A little goes a long way. Let the balm soften against your
-              fingertips, massage it gently into the skin and allow the
-              botanical aroma to unfold.
-            </p>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="hero-section" id="home">
+
+      <div class="hero-content">
+
+        <p class="hero-eyebrow">
+          Handcrafted botanical body care
+        </p>
+
+        <h1>
+          Ground yourself.
+          <span>Awaken abundance.</span>
+        </h1>
+
+        <p class="hero-description">
+          A rich botanical balm crafted with nourishing oils, aromatic
+          plant essences, and a warm forest-inspired scent.
+        </p>
+
+        <div class="hero-actions">
+          <a class="primary-button" href="shop.html">
+            Experience the Balm
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <a class="secondary-button" href="story.html">
+            Discover Our Story
+          </a>
+        </div>
+
+        <div class="hero-details" aria-label="Product highlights">
+          <div class="hero-detail">
+            <strong>Botanical</strong>
+            <span>Plant-inspired ingredients</span>
           </div>
 
-          <div className="space-y-4">
-            {[
-              {
-                number: "01",
-                title: "Scoop a small amount",
-                text: "Begin with a fingertip-sized amount. Add more only as needed.",
-              },
-              {
-                number: "02",
-                title: "Warm between your hands",
-                text: "Allow your natural body warmth to soften and activate the balm.",
-              },
-              {
-                number: "03",
-                title: "Massage into intact skin",
-                text: "Apply gently to the desired external area using slow, even motions.",
-              },
-            ].map((step) => (
-              <div
-                key={step.number}
-                className="flex gap-6 rounded-[28px] border border-white/10 bg-white/[0.05] p-6 backdrop-blur-md"
-              >
-                <div className="font-serif text-3xl text-[#efd080]">
-                  {step.number}
-                </div>
+          <div class="hero-detail">
+            <strong>Handcrafted</strong>
+            <span>Made in small batches</span>
+          </div>
 
-                <div>
-                  <h3 className="text-lg font-semibold">{step.title}</h3>
-                  <p className="mt-2 leading-7 text-white/55">{step.text}</p>
-                </div>
-              </div>
-            ))}
+          <div class="hero-detail">
+            <strong>Intentional</strong>
+            <span>Created for everyday ritual</span>
           </div>
         </div>
-      </section>
 
-      {/* Product */}
-      <section id="shop" className="px-6 py-28 lg:px-10 lg:py-40">
-        <div className="mx-auto max-w-7xl rounded-[44px] bg-[#dfc787] p-6 shadow-2xl shadow-[#173d2a]/10 sm:p-10 lg:p-16">
-          <div className="grid overflow-hidden rounded-[34px] bg-[#f7f0e2] lg:grid-cols-2">
-            <div className="relative flex min-h-[520px] items-center justify-center overflow-hidden bg-[#d7b85f] p-10">
-              <div className="absolute h-[430px] w-[430px] rounded-full border border-white/20" />
-              <div className="absolute h-[330px] w-[330px] rounded-full bg-white/10 blur-2xl" />
+      </div>
 
-              <div className="relative flex h-72 w-72 items-center justify-center rounded-full border-[10px] border-[#a97524] bg-[#f1dd9d] text-center shadow-[0_40px_70px_rgba(60,40,10,0.35)]">
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.34em] text-[#7e612d]">
-                    Fine Skin Moisturizer
-                  </p>
-                  <p className="mt-5 font-serif text-4xl text-[#173d2a]">
-                    Abundance
-                  </p>
-                  <p className="mt-1 text-xs font-bold uppercase tracking-[0.4em] text-[#866528]">
-                    Balm
-                  </p>
-                </div>
-              </div>
-            </div>
+      <!-- Product presentation -->
+      <div class="hero-product">
 
-            <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-16">
-              <p className="text-xs font-bold uppercase tracking-[0.32em] text-[#9a742e]">
-                The signature blend
-              </p>
+        <div class="product-glow" aria-hidden="true"></div>
 
-              <h2 className="mt-4 font-serif text-5xl tracking-[-0.04em] text-[#173d2a]">
-                Abundance Balm
-              </h2>
+        <div class="product-orbit product-orbit-one" aria-hidden="true"></div>
+        <div class="product-orbit product-orbit-two" aria-hidden="true"></div>
 
-              <p className="mt-6 text-lg leading-8 text-[#606b62]">
-                Our original small-batch botanical moisturizer in a convenient,
-                travel-friendly tin.
-              </p>
+        <div class="balm-stage" id="balmStage">
 
-              <div className="my-8 h-px bg-[#173d2a]/10" />
+          <!--
+            Later, replace balm-tin.png with a transparent PNG
+            photograph or render of the real Abundance Balm tin.
+          -->
+          <img
+            class="balm-tin"
+            id="balmTin"
+            src="images/balm-tin.png"
+            alt="Abundance Botanical Balm tin"
+          >
 
-              <div className="flex items-end justify-between gap-6">
-                <div>
-                  <p className="text-sm text-[#70786f]">Single tin</p>
-                  <p className="mt-1 font-serif text-4xl text-[#173d2a]">
-                    Coming soon
-                  </p>
-                </div>
-
-                <span className="rounded-full bg-[#173d2a]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#173d2a]">
-                  Small batch
-                </span>
-              </div>
-
-              <button
-                type="button"
-                className="mt-10 rounded-full bg-[#173d2a] px-8 py-5 text-sm font-bold uppercase tracking-[0.22em] text-white shadow-xl transition hover:-translate-y-1 hover:bg-[#255c3e]"
-              >
-                Join the launch list
-              </button>
-
-              <p className="mt-4 text-center text-xs leading-5 text-[#778078]">
-                Be first to know when online ordering opens.
-              </p>
-            </div>
+          <div class="balm-placeholder" id="balmPlaceholder">
+            <span>ABUNDANCE</span>
+            <small>Botanical Balm</small>
           </div>
+
+          <div class="product-shadow" aria-hidden="true"></div>
+
         </div>
-      </section>
 
-      {/* Safety */}
-      <section id="safety" className="border-y border-[#173d2a]/10 bg-white/40 px-6 py-20 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.7fr_1.3fr]">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.34em] text-[#9a742e]">
-              Use thoughtfully
-            </p>
-            <h2 className="mt-4 font-serif text-4xl text-[#173d2a]">
-              Product safety matters.
-            </h2>
-          </div>
-
-          <div className="grid gap-6 text-sm leading-7 text-[#626c64] sm:grid-cols-2">
-            <p>
-              For external use only. Avoid eyes, lips, broken skin and other
-              sensitive areas. Discontinue use if irritation occurs.
-            </p>
-
-            <p>
-              Patch test before regular use. Keep out of reach of children.
-              Full ingredient information and warnings will be available on the
-              product label and safety page.
-            </p>
-          </div>
+        <div class="product-badge">
+          <span>Small Batch</span>
+          <strong>Botanical Balm</strong>
         </div>
-      </section>
 
-      {/* Closing callout */}
-      <section className="px-6 py-28 lg:px-10 lg:py-36">
-        <div className="mx-auto max-w-5xl text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.36em] text-[#9a742e]">
-            A richer daily ritual
+      </div>
+
+      <a class="scroll-indicator" href="#introduction">
+        <span>Explore</span>
+        <span class="scroll-line" aria-hidden="true"></span>
+      </a>
+
+    </section>
+
+    <!-- Introduction -->
+    <section class="introduction-section" id="introduction">
+
+      <div class="section-label">
+        <span>01</span>
+        <p>The daily ritual</p>
+      </div>
+
+      <div class="introduction-content">
+
+        <p class="large-statement">
+          Inspired by the stillness of the forest and the warmth of the
+          rising sun.
+        </p>
+
+        <div class="introduction-copy">
+          <p>
+            Abundance Balm brings together coconut oil, almond oil,
+            jojoba oil, orange oil, pine oil, mint oil, and cinnamon oil
+            in a deeply aromatic topical balm.
           </p>
 
-          <h2 className="mt-6 font-serif text-5xl leading-tight tracking-[-0.05em] text-[#173d2a] sm:text-6xl lg:text-7xl">
-            Make room for a little more
-            <span className="block italic text-[#a1792e]">abundance.</span>
+          <a class="text-link" href="ingredients.html">
+            Explore the ingredients
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Ingredient preview -->
+    <section class="ingredient-preview-section">
+
+      <div class="section-heading">
+
+        <div>
+          <p class="section-kicker">Nature, intentionally selected</p>
+
+          <h2>
+            A warm botanical blend with a crisp forest character.
           </h2>
+        </div>
 
-          <Link
-            href="#shop"
-            className="mt-10 inline-flex rounded-full bg-[#173d2a] px-9 py-5 text-sm font-bold uppercase tracking-[0.22em] text-white shadow-xl transition hover:-translate-y-1 hover:bg-[#265d40]"
+        <a class="outline-button" href="ingredients.html">
+          View All Ingredients
+        </a>
+
+      </div>
+
+      <div class="ingredient-grid">
+
+        <article class="ingredient-card">
+          <span class="ingredient-number">01</span>
+          <div class="ingredient-icon" aria-hidden="true">🥥</div>
+          <h3>Coconut Oil</h3>
+          <p>
+            A rich, smooth base that helps the balm glide comfortably
+            across the skin.
+          </p>
+        </article>
+
+        <article class="ingredient-card">
+          <span class="ingredient-number">02</span>
+          <div class="ingredient-icon" aria-hidden="true">🌲</div>
+          <h3>Pine Oil</h3>
+          <p>
+            A crisp evergreen aroma inspired by fresh air and deep forests.
+          </p>
+        </article>
+
+        <article class="ingredient-card">
+          <span class="ingredient-number">03</span>
+          <div class="ingredient-icon" aria-hidden="true">🍊</div>
+          <h3>Orange Oil</h3>
+          <p>
+            A bright citrus note that brings warmth and balance to the blend.
+          </p>
+        </article>
+
+        <article class="ingredient-card">
+          <span class="ingredient-number">04</span>
+          <div class="ingredient-icon" aria-hidden="true">🌿</div>
+          <h3>Mint Oil</h3>
+          <p>
+            A fresh aromatic element that gives the formula its cooling character.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- Brand story preview -->
+    <section class="story-preview-section">
+
+      <div class="story-image-panel">
+        <div class="story-image-overlay"></div>
+
+        <p>
+          Rooted in nature.
+          <span>Made with intention.</span>
+        </p>
+      </div>
+
+      <div class="story-content-panel">
+
+        <p class="section-kicker">The Abundance philosophy</p>
+
+        <h2>
+          Everyday body care should feel like a ritual—not a routine.
+        </h2>
+
+        <p>
+          Abundance Balm was created to offer a grounding sensory
+          experience through texture, aroma, and intentional self-care.
+          Every tin is designed to bring a small moment of calm into the day.
+        </p>
+
+        <a class="primary-button" href="story.html">
+          Read Our Story
+          <span aria-hidden="true">→</span>
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- Product feature -->
+    <section class="product-feature-section">
+
+      <div class="product-feature-copy">
+
+        <p class="section-kicker">The signature balm</p>
+
+        <h2>
+          One tin.<br>
+          A complete sensory experience.
+        </h2>
+
+        <p>
+          Smooth, aromatic, and easy to carry, Abundance Balm is made
+          for intentional external use as part of your everyday body-care ritual.
+        </p>
+
+        <ul class="product-feature-list">
+          <li>Handcrafted in small batches</li>
+          <li>Rich botanical oil blend</li>
+          <li>Warm citrus, pine, mint, and spice aroma</li>
+          <li>Portable reusable metal tin</li>
+        </ul>
+
+        <div class="product-feature-actions">
+          <a class="primary-button" href="shop.html">
+            Shop Abundance Balm
+          </a>
+
+          <a class="text-link" href="safety.html">
+            Read safety information
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="product-feature-visual">
+
+        <div class="feature-ring" aria-hidden="true"></div>
+
+        <div class="feature-tin">
+          <span class="feature-brand">ABUNDANCE</span>
+          <span class="feature-divider"></span>
+          <span class="feature-product-name">Botanical Balm</span>
+          <small>Handcrafted Body Care</small>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Safety notice -->
+    <section class="safety-preview-section">
+
+      <div>
+        <p class="section-kicker">Use thoughtfully</p>
+
+        <h2>
+          Botanical ingredients deserve careful use.
+        </h2>
+      </div>
+
+      <div>
+        <p>
+          Abundance Balm is intended for external cosmetic use. Review
+          the ingredient list, patch-test before broader use, avoid sensitive
+          areas, and discontinue use if irritation occurs.
+        </p>
+
+        <a class="outline-button" href="safety.html">
+          Read Full Safety Guide
+        </a>
+      </div>
+
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+
+      <div class="newsletter-glow" aria-hidden="true"></div>
+
+      <div class="newsletter-content">
+        <p class="section-kicker">Enter the forest</p>
+
+        <h2>
+          Join the Abundance community.
+        </h2>
+
+        <p>
+          Receive product releases, ingredient stories, rituals, and
+          special offers.
+        </p>
+
+        <form class="newsletter-form" id="newsletterForm">
+          <label class="visually-hidden" for="email">
+            Email address
+          </label>
+
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Your email address"
+            autocomplete="email"
+            required
           >
-            Explore the balm
-          </Link>
-        </div>
-      </section>
 
-      {/* Footer */}
-      <footer className="bg-[#102b1d] px-6 py-16 text-white lg:px-10">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-12 border-b border-white/10 pb-14 lg:grid-cols-[1.3fr_0.7fr_0.7fr]">
-            <div>
-              <p className="font-serif text-4xl">Abundance Balm</p>
-              <p className="mt-4 max-w-md leading-7 text-white/50">
-                A concentrated botanical moisturizer made to bring richness,
-                intention and ritual into everyday skin care.
-              </p>
-            </div>
+          <button type="submit">
+            Join
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
 
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#e8cb7c]">
-                Explore
-              </p>
-              <div className="mt-5 flex flex-col gap-3 text-sm text-white/55">
-                <a href="#story" className="hover:text-white">
-                  Our Story
-                </a>
-                <a href="#ingredients" className="hover:text-white">
-                  Ingredients
-                </a>
-                <a href="#ritual" className="hover:text-white">
-                  How to Use
-                </a>
-                <a href="#safety" className="hover:text-white">
-                  Product Safety
-                </a>
-              </div>
-            </div>
+        <p class="form-message" id="formMessage" aria-live="polite"></p>
+      </div>
 
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#e8cb7c]">
-                Company
-              </p>
-              <div className="mt-5 flex flex-col gap-3 text-sm text-white/55">
-                <a href="#" className="hover:text-white">
-                  Contact
-                </a>
-                <a href="#" className="hover:text-white">
-                  Wholesale
-                </a>
-                <a href="#" className="hover:text-white">
-                  Shipping
-                </a>
-                <a href="#" className="hover:text-white">
-                  Privacy
-                </a>
-              </div>
-            </div>
-          </div>
+    </section>
 
-          <div className="flex flex-col gap-4 pt-8 text-xs text-white/35 sm:flex-row sm:items-center sm:justify-between">
-            <p>© 2026 Abundance Balm LLC. All rights reserved.</p>
-            <p>Made with intention in Ohio.</p>
-          </div>
-        </div>
-      </footer>
-    </main>
-  );
-}
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+
+    <div class="footer-main">
+
+      <div class="footer-brand">
+        <a class="brand-logo" href="index.html">
+          <span class="brand-mark" aria-hidden="true">A</span>
+
+          <span class="brand-name">
+            <strong>Abundance</strong>
+            <small>Botanical Balm</small>
+          </span>
+        </a>
+
+        <p>
+          Botanical body care inspired by the grounding energy of nature.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h2>Explore</h2>
+        <a href="shop.html">Shop</a>
+        <a href="ingredients.html">Ingredients</a>
+        <a href="story.html">Our Story</a>
+        <a href="safety.html">Safety</a>
+      </div>
+
+      <div class="footer-column">
+        <h2>Support</h2>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="wholesale.html">Wholesale</a>
+        <a href="shipping.html">Shipping & Returns</a>
+      </div>
+
+      <div class="footer-column">
+        <h2>Follow</h2>
+        <a href="#" aria-label="Abundance Balm on Instagram">Instagram</a>
+        <a href="#" aria-label="Abundance Balm on Facebook">Facebook</a>
+        <a href="#" aria-label="Abundance Balm on TikTok">TikTok</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        © <span id="currentYear">2026</span> Abundance Balm.
+        All rights reserved.
+      </p>
+
+      <div>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <noscript>
+    <div class="noscript-message">
+      JavaScript is disabled. The website will still work, but some visual
+      animations may not appear.
+    </div>
+  </noscript>
+
+</body>
+</html>
