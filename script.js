@@ -1,73 +1,116 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const year = document.getElementById("currentYear");
-  if (year) year.textContent = new Date().getFullYear();
+const ETSY_SHOP_URL = "balmofabundance.etsy.com";
 
-  const menuButton = document.getElementById("menuButton");
-  const navigation = document.getElementById("navigationLinks");
+const menuButton = document.getElementById("menuButton");
+const navigationLinks = document.getElementById("navigationLinks");
+const currentYear = document.getElementById("currentYear");
+const particleField = document.getElementById("particleField");
+const balmStage = document.getElementById("balmStage");
 
-  if (menuButton && navigation) {
-    menuButton.addEventListener("click", () => {
-      const isOpen = navigation.classList.toggle("open");
-      document.body.classList.toggle("menu-open", isOpen);
-      menuButton.setAttribute("aria-expanded", String(isOpen));
-      menuButton.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+if (currentYear) {
+  currentYear.textContent = new Date().getFullYear();
+}
+
+if (menuButton && navigationLinks) {
+  menuButton.addEventListener("click", () => {
+    const menuIsOpen = navigationLinks.classList.toggle("open");
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      menuIsOpen ? "true" : "false"
+    );
+
+    menuButton.setAttribute(
+      "aria-label",
+      menuIsOpen
+        ? "Close navigation menu"
+        : "Open navigation menu"
+    );
+
+    document.body.classList.toggle("menu-open", menuIsOpen);
+  });
+
+  navigationLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navigationLinks.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Open navigation menu");
+      document.body.classList.remove("menu-open");
     });
+  });
 
-    navigation.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navigation.classList.remove("open");
-        document.body.classList.remove("menu-open");
-        menuButton.setAttribute("aria-expanded", "false");
-        menuButton.setAttribute("aria-label", "Open navigation menu");
-      });
-    });
-  }
+  document.addEventListener("click", (event) => {
+    const clickedInsideMenu = navigationLinks.contains(event.target);
+    const clickedMenuButton = menuButton.contains(event.target);
 
-  const particleField = document.getElementById("particleField");
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!clickedInsideMenu && !clickedMenuButton) {
+      navigationLinks.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Open navigation menu");
+      document.body.classList.remove("menu-open");
+    }
+  });
+}
 
-  if (particleField && !reduceMotion) {
-    const fragment = document.createDocumentFragment();
-
-    for (let i = 0; i < 55; i += 1) {
-      const particle = document.createElement("span");
-      particle.className = "particle";
-      particle.style.left = `${Math.random() * 100}%`;
-      particle.style.animationDuration = `${10 + Math.random() * 18}s`;
-      particle.style.animationDelay = `${Math.random() * 12}s`;
-      particle.style.opacity = String(Math.random());
-      particle.style.transform = `scale(${0.3 + Math.random()})`;
-      fragment.appendChild(particle);
+document.querySelectorAll(".etsy-link").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    if (
+      ETSY_SHOP_URL &&
+      ETSY_SHOP_URL !== "PASTE_YOUR_ETSY_LISTING_URL_HERE"
+    ) {
+      link.href = ETSY_SHOP_URL;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      return;
     }
 
-    particleField.appendChild(fragment);
-  }
+    event.preventDefault();
 
-  const balmStage = document.getElementById("balmStage");
-
-  if (balmStage && !reduceMotion) {
-    let frameId = null;
-
-    document.addEventListener("mousemove", (event) => {
-      if (frameId) cancelAnimationFrame(frameId);
-
-      frameId = requestAnimationFrame(() => {
-        const x = (event.clientX / window.innerWidth - 0.5) * 12;
-        const y = (event.clientY / window.innerHeight - 0.5) * -12;
-        balmStage.style.setProperty("--mouse-x", `${x}deg`);
-        balmStage.style.setProperty("--mouse-y", `${y}deg`);
-      });
-    });
-  }
-
-  const form = document.getElementById("newsletterForm");
-  const message = document.getElementById("formMessage");
-
-  if (form && message) {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      message.textContent = "Thank you for joining the Abundance community.";
-      form.reset();
-    });
-  }
+    window.location.href =
+      "mailto:thegreatfeeling@zohomail.com" +
+      "?subject=Abundance%20Balm%20Order" +
+      "&body=Hello%2C%20I%20would%20like%20to%20purchase%20Abundance%20Balm.";
+  });
 });
+
+const reducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+const smallScreen = window.matchMedia("(max-width: 650px)").matches;
+
+if (particleField && !reducedMotion && !smallScreen) {
+  for (let index = 0; index < 20; index += 1) {
+    const particle = document.createElement("span");
+
+    particle.className = "particle";
+    particle.style.left = `${Math.random() * 100}%`;
+    particle.style.animationDuration = `${8 + Math.random() * 9}s`;
+    particle.style.animationDelay = `${Math.random() * -15}s`;
+    particle.style.opacity = `${0.25 + Math.random() * 0.55}`;
+    particle.style.transform = `scale(${0.5 + Math.random()})`;
+
+    particleField.appendChild(particle);
+  }
+}
+
+if (balmStage && !reducedMotion && !smallScreen) {
+  balmStage.addEventListener("pointermove", (event) => {
+    const rectangle = balmStage.getBoundingClientRect();
+
+    const horizontalPosition =
+      (event.clientX - rectangle.left) / rectangle.width;
+
+    const verticalPosition =
+      (event.clientY - rectangle.top) / rectangle.height;
+
+    const rotateY = (horizontalPosition - 0.5) * 12;
+    const rotateX = (0.5 - verticalPosition) * 8;
+
+    balmStage.style.transform =
+      `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  balmStage.addEventListener("pointerleave", () => {
+    balmStage.style.transform = "";
+  });
+}
