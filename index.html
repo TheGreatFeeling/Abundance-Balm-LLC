@@ -5,12 +5,12 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
 
   <meta
     name="description"
-    content="Abundance Balm is a handcrafted botanical body balm inspired by kindness and made with carefully selected oils."
+    content="Abundance Balm is a handcrafted botanical body balm inspired by kindness, nature, and meaningful daily rituals."
   >
 
   <meta name="theme-color" content="#0b160d">
@@ -28,7 +28,6 @@
   </a>
 
   <header class="site-header">
-
     <nav class="main-navigation" aria-label="Main navigation">
 
       <a class="site-logo" href="index.html">
@@ -46,6 +45,7 @@
         type="button"
         aria-expanded="false"
         aria-controls="navigationLinks"
+        aria-label="Open navigation menu"
       >
         <span></span>
         <span></span>
@@ -62,18 +62,15 @@
         <a href="contact.html">Contact</a>
       </div>
 
-      <a class="cart-link" href="shop.html" aria-label="Shopping cart">
-        <span aria-hidden="true">▢</span>
-        <span>0</span>
+      <a class="header-shop-button etsy-link" href="shop.html">
+        Shop
       </a>
 
     </nav>
-
   </header>
 
   <main id="main-content">
 
-    <!-- HERO -->
     <section class="hero-section">
 
       <div class="hero-overlay"></div>
@@ -105,19 +102,23 @@
           </h2>
 
           <p class="hero-description">
-            A handcrafted botanical balm inspired by kindness,
-            made with thoughtfully selected oils and a warm,
-            forest-inspired aroma.
+            A handcrafted botanical balm inspired by kindness and made
+            with thoughtfully selected oils and a warm, forest-inspired aroma.
           </p>
+
+          <div class="hero-price-row">
+            <strong>$30</strong>
+            <span>Free shipping</span>
+          </div>
 
           <div class="hero-buttons">
             <a class="gold-button" href="shop.html">
-              Shop Now
+              Shop the Balm
               <span aria-hidden="true">→</span>
             </a>
 
             <a class="outline-button" href="story.html">
-              Our Story
+              Read Our Story
             </a>
           </div>
 
@@ -128,77 +129,125 @@
           <div class="product-glow"></div>
 
           <div class="product-stage" id="balmStage">
-
             <img
               id="balmTin"
               class="hero-tin"
               src="images/balm-tin.png"
               alt="Abundance Balm metal tin"
             >
-
-            <div class="hero-product">
-
-    <div class="product-glow"></div>
-
-    <div class="product-stage" id="balmStage">
-
-        <img
-            id="balmTin"
-            class="hero-tin"
-            src="images/balm-tin.png"
-            alt="Abundance Balm metal tin"
-        >
-
-    </div>
-
-</div>
-
           </div>
 
         </div>
 
       </div>
 
+      <a class="scroll-cue" href="#product-section">
+        <span>Discover</span>
+        <b aria-hidden="true">↓</b>
+      </a>
+
     </section>
 
-    <!-- VALUES -->
-    <section class="value-strip">
+    <section class="value-strip" aria-label="Product highlights">
 
       <article>
         <span class="value-icon" aria-hidden="true">❧</span>
+
         <div>
-          <h2>Natural Ingredients</h2>
-          <p>Thoughtfully selected botanical oils.</p>
+          <h2>Botanical Oils</h2>
+          <p>Thoughtfully selected ingredients.</p>
         </div>
       </article>
 
       <article>
         <span class="value-icon" aria-hidden="true">♡</span>
+
         <div>
-          <h2>Handcrafted With Care</h2>
-          <p>Made in small batches with intention.</p>
+          <h2>Small Batches</h2>
+          <p>Handcrafted with intention.</p>
         </div>
       </article>
 
       <article>
         <span class="value-icon" aria-hidden="true">♧</span>
+
         <div>
-          <h2>Inspired by Nature</h2>
-          <p>Rooted in warmth, earth, and abundance.</p>
+          <h2>Forest Inspired</h2>
+          <p>A warm, grounding aroma.</p>
         </div>
       </article>
 
       <article>
-        <span class="value-icon" aria-hidden="true">♡</span>
+        <span class="value-icon" aria-hidden="true">✦</span>
+
         <div>
-          <h2>Made With Love</h2>
-          <p>Crafted by Joshua Smith.</p>
+          <h2>Free Shipping</h2>
+          <p>Available wherever we can ship.</p>
         </div>
       </article>
 
     </section>
 
-    <!-- STORY -->
+    <section class="featured-product-section" id="product-section">
+
+      <div class="featured-product-image">
+        <div class="featured-image-frame">
+          <img
+            src="images/balm-open.jpg"
+            alt="Open tin of Abundance Balm"
+          >
+        </div>
+      </div>
+
+      <div class="featured-product-copy">
+
+        <p class="section-kicker">
+          The signature balm
+        </p>
+
+        <div class="small-divider" aria-hidden="true">
+          <span></span>
+          <b>✦</b>
+          <span></span>
+        </div>
+
+        <h2>
+          A meaningful ritual for everyday skin.
+        </h2>
+
+        <p>
+          Abundance Balm combines coconut, sweet almond, jojoba,
+          orange, pine, mint, and cinnamon oils in a rich botanical blend.
+        </p>
+
+        <ul class="product-benefits">
+          <li>Rich, smooth texture</li>
+          <li>Warm forest-inspired aroma</li>
+          <li>Handcrafted in small batches</li>
+          <li>Free shipping</li>
+        </ul>
+
+        <div class="product-purchase-row">
+          <div>
+            <strong>$30.00</strong>
+            <span>Approximately 4-inch round tin</span>
+          </div>
+
+          <a class="gold-button etsy-link" href="shop.html">
+            Buy on Etsy
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <p class="product-note">
+          For external cosmetic use only. Review the safety and ingredient
+          information before use.
+        </p>
+
+      </div>
+
+    </section>
+
     <section class="story-section">
 
       <div class="story-copy">
@@ -219,13 +268,13 @@
 
         <p>
           Years ago, during a brutally hot day at Nelson Ledges,
-          a stranger noticed that I was struggling and handed me
+          a stranger noticed that Joshua was struggling and handed him
           a small tin of Abundance Balm.
         </p>
 
         <p>
-          That simple act of kindness stayed with me. After years
-          of searching for the woman who shared it, I began recreating
+          That simple act of kindness stayed with him. After years of
+          searching for the woman who shared it, he began recreating
           the balm using the ingredients printed on the original tin.
         </p>
 
@@ -235,7 +284,7 @@
         </p>
 
         <a class="dark-button" href="story.html">
-          Read the Story
+          Read the Full Story
           <span aria-hidden="true">→</span>
         </a>
 
@@ -243,35 +292,34 @@
 
       <div class="story-gallery">
 
-  <figure class="story-photo story-photo-large">
-    <img
-      src="images/forest-story.jpg"
-      alt="Sunlight shining through a peaceful forest"
-    >
-  </figure>
+        <figure class="story-photo story-photo-large">
+          <img
+            src="images/forest-story.jpg"
+            alt="Sunlight shining through a peaceful forest"
+          >
+        </figure>
 
-  <figure class="story-photo story-photo-top">
-    <img
-      src="images/balm-open.jpg"
-      alt="Open tin of Abundance Balm"
-    >
-  </figure>
+        <figure class="story-photo story-photo-top">
+          <img
+            src="images/balm-open.jpg"
+            alt="Open tin of Abundance Balm"
+          >
+        </figure>
 
-  <figure class="story-photo story-photo-bottom">
-    <img
-      src="images/balm-stack.jpg"
-      alt="A collection of handcrafted Abundance Balm tins"
-    >
-  </figure>
+        <figure class="story-photo story-photo-bottom">
+          <img
+            src="images/balm-stack.jpg"
+            alt="A collection of handcrafted Abundance Balm tins"
+          >
+        </figure>
 
-  <div class="story-branch" aria-hidden="true">🌿</div>
+        <div class="story-branch" aria-hidden="true">🌿</div>
 
-</div>
-      
+      </div>
+
     </section>
 
-    <!-- INGREDIENTS -->
-    <section class="ingredients-section">
+    <section class="ingredients-preview-section">
 
       <div class="section-heading">
 
@@ -279,8 +327,8 @@
           <p class="section-kicker">Inside every tin</p>
 
           <h2>
-            Simple ingredients.<br>
-            A meaningful ritual.
+            Seven thoughtfully<br>
+            selected oils.
           </h2>
         </div>
 
@@ -290,128 +338,94 @@
 
       </div>
 
-      <div class="ingredient-grid">
+      <div class="ingredient-preview-grid">
 
         <article>
           <span>01</span>
-          <h3>Coconut Oil</h3>
-          <p>
-            The smooth, nourishing base of the balm.
-          </p>
+          <h3>Coconut</h3>
+          <p>A rich and smooth botanical base.</p>
         </article>
 
         <article>
           <span>02</span>
-          <h3>Almond Oil</h3>
-          <p>
-            A lightweight oil that helps the balm glide across the skin.
-          </p>
+          <h3>Sweet Almond</h3>
+          <p>A lightweight oil that helps the balm glide.</p>
         </article>
 
         <article>
           <span>03</span>
-          <h3>Jojoba Oil</h3>
-          <p>
-            A silky botanical oil used for smooth texture and balance.
-          </p>
+          <h3>Jojoba</h3>
+          <p>A silky botanical oil for texture and balance.</p>
         </article>
 
         <article>
           <span>04</span>
-          <h3>Orange Oil</h3>
-          <p>
-            A bright citrus note that brings warmth to the blend.
-          </p>
+          <h3>Orange</h3>
+          <p>A bright citrus note that brings warmth.</p>
         </article>
 
         <article>
           <span>05</span>
-          <h3>Pine Oil</h3>
-          <p>
-            A crisp evergreen aroma inspired by the forest.
-          </p>
+          <h3>Pine</h3>
+          <p>A crisp evergreen aroma inspired by nature.</p>
         </article>
 
         <article>
           <span>06</span>
-          <h3>Mint Oil</h3>
-          <p>
-            A fresh aromatic element with a cooling character.
-          </p>
+          <h3>Mint</h3>
+          <p>A fresh aromatic element with cooling character.</p>
         </article>
 
         <article>
           <span>07</span>
-          <h3>Cinnamon Oil</h3>
-          <p>
-            A warm spice note that completes the signature aroma.
-          </p>
+          <h3>Cinnamon</h3>
+          <p>A warm spice note that completes the aroma.</p>
         </article>
 
       </div>
 
     </section>
 
-    <!-- NEWSLETTER -->
-    <section class="newsletter-section">
+    <section class="closing-section">
 
-      <div class="newsletter-overlay"></div>
+      <div class="closing-overlay"></div>
 
-      <div class="newsletter-content">
+      <div class="closing-content">
 
         <p class="section-kicker">
-          Join the Abundance community
+          Carry the feeling with you
         </p>
 
         <h2>
-          Stay connected to the story.
+          One small tin.<br>
+          One meaningful story.
         </h2>
 
         <p>
-          Receive updates about new batches, special offers,
-          and the continued journey of Abundance Balm.
+          Bring a little warmth, intention, and abundance
+          into your everyday ritual.
         </p>
 
-        <form class="newsletter-form" id="newsletterForm">
-
-          <label class="visually-hidden" for="email">
-            Email address
-          </label>
-
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="Your email address"
-            autocomplete="email"
-            required
-          >
-
-          <button type="submit">
-            Join Us
+        <div class="closing-buttons">
+          <a class="gold-button etsy-link" href="shop.html">
+            Shop for $30
             <span aria-hidden="true">→</span>
-          </button>
+          </a>
 
-        </form>
-
-        <p
-          class="form-message"
-          id="formMessage"
-          aria-live="polite"
-        ></p>
+          <a class="outline-button" href="safety.html">
+            Product Safety
+          </a>
+        </div>
 
       </div>
 
     </section>
 
-    <!-- LOWER VALUES -->
     <section class="lower-value-strip">
-
       <span>Made in small batches</span>
       <span>External cosmetic use</span>
-      <span>Handcrafted with care</span>
+      <span>Free shipping</span>
       <span>Inspired by kindness</span>
-
     </section>
 
   </main>
@@ -420,38 +434,66 @@
 
     <div class="footer-main">
 
-      <a class="site-logo footer-logo" href="index.html">
-        <span class="logo-leaf" aria-hidden="true">❧</span>
+      <div class="footer-brand-column">
 
-        <span class="logo-copy">
-          <strong>Abundance Balm</strong>
-          <small>Botanical Body Care</small>
-        </span>
-      </a>
+        <a class="site-logo footer-logo" href="index.html">
+          <span class="logo-leaf" aria-hidden="true">❧</span>
+
+          <span class="logo-copy">
+            <strong>Abundance Balm</strong>
+            <small>Botanical Body Care</small>
+          </span>
+        </a>
+
+        <p>
+          Handcrafted botanical body care inspired by nature,
+          kindness, and meaningful everyday rituals.
+        </p>
+
+      </div>
 
       <nav aria-label="Footer navigation">
+        <strong>Explore</strong>
         <a href="shop.html">Shop</a>
         <a href="story.html">Our Story</a>
         <a href="ingredients.html">Ingredients</a>
         <a href="safety.html">Safety</a>
-        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
       </nav>
 
+      <div class="footer-contact">
+        <strong>Contact</strong>
+
+        <a href="mailto:thegreatfeeling@zohomail.com">
+          thegreatfeeling@zohomail.com
+        </a>
+
+        <a href="tel:+12162009733">
+          216-200-9733
+        </a>
+
+        <a href="contact.html">
+          Send a message
+        </a>
+      </div>
+
       <div class="footer-legal">
+        <strong>Information</strong>
+        <a href="shipping.html">Shipping & Returns</a>
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms of Service</a>
-        <a href="shipping.html">Shipping & Returns</a>
+        <a href="wholesale.html">Wholesale</a>
       </div>
 
     </div>
 
     <div class="footer-bottom">
       <p>
-        © <span id="currentYear">2026</span> Abundance Balm, LLC
+        © <span id="currentYear">2026</span> Abundance Balm LLC
       </p>
 
       <p>
-        Made with Love by Joshua Smith ♡
+        Made with love by Joshua Smith ♡
       </p>
     </div>
 
