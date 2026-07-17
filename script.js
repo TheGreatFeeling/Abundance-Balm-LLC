@@ -1,4 +1,4 @@
-const ETSY_SHOP_URL = "balmofabundance.etsy.com";
+const ETSY_SHOP_URL = "https://balmofabundance.etsy.com";
 
 const menuButton = document.getElementById("menuButton");
 const navigationLinks = document.getElementById("navigationLinks");
