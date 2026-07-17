@@ -1681,6 +1681,55 @@ button {
   }
 }
 
+/* Ingredient icons */
+
+.ingredient-icon {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 18px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(217, 167, 46, 0.35);
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(217, 167, 46, 0.18),
+      rgba(255, 255, 255, 0.025)
+    );
+  font-size: 34px;
+  line-height: 1;
+  box-shadow:
+    inset 0 0 25px rgba(217, 167, 46, 0.08),
+    0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.ingredient-preview-grid article {
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredient-preview-grid article > span {
+  margin-top: auto;
+}
+
+.ingredient-preview-grid h3 {
+  margin-top: 13px;
+}
+
+@media (max-width: 650px) {
+  .ingredient-icon {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 12px;
+    font-size: 27px;
+  }
+
+  .ingredient-preview-grid h3 {
+    margin-top: 8px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
