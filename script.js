@@ -1,4 +1,4 @@
-const ETSY_SHOP_URL = "PASTE_YOUR_ETSY_LISTING_URL_HERE";
+const ETSY_SHOP_URL = "https://www.etsy.com/shop/balmofabundance";
 
 document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.getElementById("menuButton");
@@ -7,15 +7,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const particleField = document.getElementById("particleField");
   const balmStage = document.getElementById("balmStage");
 
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
   /*
-   * Automatically update the copyright year.
+   * Keep the footer year current.
    */
   if (currentYear) {
     currentYear.textContent = new Date().getFullYear();
   }
 
   /*
-   * Mobile navigation menu.
+   * Make every Etsy shop link use the same destination.
+   */
+  document.querySelectorAll('a[href*="etsy.com"]').forEach((link) => {
+    link.href = ETSY_SHOP_URL;
+  });
+
+  /*
+   * Mobile navigation.
    */
   if (menuButton && navigationLinks) {
     const closeMenu = () => {
@@ -25,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "aria-label",
         "Open navigation menu"
       );
-
       document.body.classList.remove("menu-open");
     };
 
@@ -36,42 +46,22 @@ document.addEventListener("DOMContentLoaded", () => {
         "aria-label",
         "Close navigation menu"
       );
-
       document.body.classList.add("menu-open");
     };
 
-    menuButton.addEventListener("click", (event) => {
-      event.stopPropagation();
+    menuButton.addEventListener("click", () => {
+      const isOpen =
+        menuButton.getAttribute("aria-expanded") === "true";
 
-      const menuIsOpen =
-        navigationLinks.classList.contains("open");
-
-      if (menuIsOpen) {
+      if (isOpen) {
         closeMenu();
       } else {
         openMenu();
       }
     });
 
-    navigationLinks
-      .querySelectorAll("a")
-      .forEach((link) => {
-        link.addEventListener("click", closeMenu);
-      });
-
-    document.addEventListener("click", (event) => {
-      const clickedInsideNavigation =
-        navigationLinks.contains(event.target);
-
-      const clickedMenuButton =
-        menuButton.contains(event.target);
-
-      if (
-        !clickedInsideNavigation &&
-        !clickedMenuButton
-      ) {
-        closeMenu();
-      }
+    navigationLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
     });
 
     document.addEventListener("keydown", (event) => {
@@ -80,107 +70,49 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    document.addEventListener("click", (event) => {
+      const menuIsOpen =
+        menuButton.getAttribute("aria-expanded") === "true";
+
+      if (
+        menuIsOpen &&
+        !navigationLinks.contains(event.target) &&
+        !menuButton.contains(event.target)
+      ) {
+        closeMenu();
+      }
+    });
+
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 920) {
+      if (window.innerWidth > 860) {
         closeMenu();
       }
     });
   }
 
   /*
-   * Etsy purchase links.
-   *
-   * When the Etsy URL is added above, every element with
-   * class="etsy-link" will open that listing.
-   *
-   * Until then, the button opens an order email.
+   * Decorative floating particles in the hero.
    */
-  document
-    .querySelectorAll(".etsy-link")
-    .forEach((link) => {
-      link.addEventListener("click", (event) => {
-        const validEtsyURL =
-          ETSY_SHOP_URL &&
-          ETSY_SHOP_URL !==
-            "PASTE_YOUR_ETSY_LISTING_URL_HERE";
+  if (particleField && !reduceMotion) {
+    const particleCount =
+      window.innerWidth < 620 ? 12 : 24;
 
-        if (validEtsyURL) {
-          event.preventDefault();
-
-          window.open(
-            ETSY_SHOP_URL,
-            "_blank",
-            "noopener,noreferrer"
-          );
-
-          return;
-        }
-
-        event.preventDefault();
-
-        const subject = encodeURIComponent(
-          "Abundance Balm Order"
-        );
-
-        const body = encodeURIComponent(
-          "Hello,\n\nI would like to purchase Abundance Balm.\n\nThank you."
-        );
-
-        window.location.href =
-          `mailto:thegreatfeeling@zohomail.com` +
-          `?subject=${subject}&body=${body}`;
-      });
-    });
-
-  /*
-   * Respect accessibility settings and reduce animation
-   * on smaller devices.
-   */
-  const reducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  const smallScreen = window.matchMedia(
-    "(max-width: 650px)"
-  ).matches;
-
-  /*
-   * Floating light particles in the hero section.
-   */
-  if (
-    particleField &&
-    !reducedMotion &&
-    !smallScreen
-  ) {
-    particleField.innerHTML = "";
-
-    const numberOfParticles = 20;
-
-    for (
-      let index = 0;
-      index < numberOfParticles;
-      index += 1
-    ) {
-      const particle =
-        document.createElement("span");
+    for (let index = 0; index < particleCount; index += 1) {
+      const particle = document.createElement("span");
 
       particle.className = "particle";
+      particle.setAttribute("aria-hidden", "true");
 
-      particle.style.left =
-        `${Math.random() * 100}%`;
-
+      particle.style.left = `${Math.random() * 100}%`;
       particle.style.animationDuration =
-        `${8 + Math.random() * 9}s`;
-
+        `${8 + Math.random() * 10}s`;
       particle.style.animationDelay =
-        `${Math.random() * -15}s`;
-
+        `${Math.random() * -16}s`;
       particle.style.opacity =
         `${0.25 + Math.random() * 0.55}`;
-
       particle.style.setProperty(
         "--particle-scale",
-        `${0.5 + Math.random()}`
+        `${0.5 + Math.random() * 1.2}`
       );
 
       particleField.appendChild(particle);
@@ -188,77 +120,100 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*
-   * Gentle three-dimensional balm movement on desktop.
+   * Gentle product movement based on pointer position.
    */
-  if (
-    balmStage &&
-    !reducedMotion &&
-    !smallScreen
-  ) {
-    balmStage.addEventListener(
-      "pointermove",
-      (event) => {
-        const rectangle =
-          balmStage.getBoundingClientRect();
+  if (balmStage && !reduceMotion) {
+    const heroProduct = balmStage.closest(".hero-product");
 
-        const horizontalPosition =
-          (event.clientX - rectangle.left) /
-          rectangle.width;
-
-        const verticalPosition =
-          (event.clientY - rectangle.top) /
-          rectangle.height;
-
-        const rotateY =
-          (horizontalPosition - 0.5) * 12;
-
-        const rotateX =
-          (0.5 - verticalPosition) * 8;
+    if (heroProduct) {
+      heroProduct.addEventListener("pointermove", (event) => {
+        const bounds = heroProduct.getBoundingClientRect();
+        const horizontal =
+          (event.clientX - bounds.left) / bounds.width - 0.5;
+        const vertical =
+          (event.clientY - bounds.top) / bounds.height - 0.5;
 
         balmStage.style.transform =
-          `rotateX(${rotateX}deg) ` +
-          `rotateY(${rotateY}deg)`;
-      }
-    );
+          `perspective(900px)
+           rotateY(${horizontal * 8}deg)
+           rotateX(${vertical * -7}deg)
+           translate3d(${horizontal * 8}px, ${vertical * 8}px, 0)`;
+      });
 
-    balmStage.addEventListener(
-      "pointerleave",
-      () => {
-        balmStage.style.transform = "";
-      }
-    );
+      heroProduct.addEventListener("pointerleave", () => {
+        balmStage.style.transform =
+          "perspective(900px) rotateY(0deg) rotateX(0deg)";
+      });
+    }
   }
 
   /*
-   * Smooth scrolling for links that point to sections
-   * on the same page.
+   * Smooth scrolling for links that point to sections on this page.
    */
-  document
-    .querySelectorAll('a[href^="#"]')
-    .forEach((link) => {
-      link.addEventListener("click", (event) => {
-        const targetID =
-          link.getAttribute("href");
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const targetId = link.getAttribute("href");
 
-        if (!targetID || targetID === "#") {
-          return;
-        }
+      if (!targetId || targetId === "#") {
+        return;
+      }
 
-        const targetElement =
-          document.querySelector(targetID);
+      const target = document.querySelector(targetId);
 
-        if (!targetElement) {
-          return;
-        }
+      if (!target) {
+        return;
+      }
 
-        event.preventDefault();
+      event.preventDefault();
 
-        targetElement.scrollIntoView({
-          behavior: reducedMotion
-            ? "auto"
-            : "smooth",
-          block: "start"
-        });
+      target.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "start"
       });
     });
+  });
+
+  /*
+   * Reveal major page sections as they enter the viewport.
+   */
+  const revealItems = document.querySelectorAll(
+    ".value-strip article, " +
+    ".featured-product-image, " +
+    ".featured-product-copy, " +
+    ".story-copy, " +
+    ".story-gallery, " +
+    ".ingredient-card, " +
+    ".closing-content"
+  );
+
+  if (revealItems.length && !reduceMotion) {
+    revealItems.forEach((item) => {
+      item.style.opacity = "0";
+      item.style.transform = "translateY(24px)";
+      item.style.transition =
+        "opacity 700ms ease, transform 700ms ease";
+    });
+
+    const observer = new IntersectionObserver(
+      (entries, revealObserver) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0)";
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.14,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
+
+    revealItems.forEach((item) => {
+      observer.observe(item);
+    });
+  }
 });
